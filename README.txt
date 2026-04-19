@@ -10,7 +10,9 @@ CREATE TABLE compras (
     valor NUMERIC
 );
 
-ajustar senha e usuário
+ajustar senha e usuário, padrao:
+postgres
+carro123.
 
 para acessar: http://localhost:8080
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Compras</title>
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+
+    <html>
+
+    <head>
+        <title>Compras</title>
+    </head>
+
+    <body>
+        <h1>Registro de Compras</h1>
+
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="number" id="valor" placeholder="Valor">
+        <button onclick="adicionar()">Adicionar</button>
+
+        <ul id="lista"></ul>
+
+        <script>
+            function adicionar() {
+                console.log("CLICOU");
+
+                const nome = document.getElementById("nome").value;
+                const valor = parseFloat(document.getElementById("valor").value);
+
+                fetch("http://localhost:8080/compras", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nome, valor })
+                })
+                    .then(() => {
+                        console.log("POST enviado");
+                        carregar();
+                    })
+                    .catch(err => console.error("ERRO POST:", err));
+            }
+
+            function carregar() {
+                fetch("http://localhost:8080/compras")
+                    .then(res => res.json())
+                    .then(data => {
+                        const lista = document.getElementById("lista");
+                        lista.innerHTML = "";
+
+                        data.forEach(c => {
+                            const li = document.createElement("li");
+                            li.textContent = c.nome + " - R$ " + c.valor;
+                            lista.appendChild(li);
+                        });
+                    })
+                    .catch(err => console.error("ERRO GET:", err));
+            }
+
+            carregar();
+        </script>
+    </body>
+
+    </html>
+
+
+</body>
+
+</html>

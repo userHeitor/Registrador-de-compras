@@ -1,0 +1,4 @@
+com\Registrador\compras\ComprasApiApplication.class
+com\Registrador\compras\Compra.class
+com\Registrador\compras\CompraController.class
+com\Registrador\compras\Conexao.class
